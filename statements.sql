@@ -1,3 +1,31 @@
+/*
+SELECT * FROM usuarios_lenguajes.usuarios;
+
+INSERT INTO usuarios_lenguajes.usuarios (nombre, apellido, email, edad, lenguaje) VALUES
+('Juan', 'Gomez', 'juan.gomez@example.com', 28, 'Java'),
+('Maria', 'Lopez', 'maria.lopez@example.com', 32, 'JavaScript'),
+('Carlos', 'Rodriguez', 'carlos.rodriguez@example.com', 25, 'Python'),
+('Laura', 'Fernandez', 'laura.fernandez@example.com', 30, 'C++'),
+('Pedro', 'Martinez', 'pedro.martinez@example.com', 22, 'Ruby'),
+('Ana', 'Hernandez', 'ana.hernandez@example.com', 35, 'SQL'),
+('Miguel', 'Perez', 'miguel.perez@example.com', 28, 'PHP'),
+('Sofia', 'Garcia', 'sofia.garcia@example.com', 26, 'Swift'),
+('Javier', 'Diaz', 'javier.diaz@example.com', 31, 'TypeScript'),
+('Luis', 'Sanchez', 'luis.sanchez@example.com', 27, 'Go'),
+('Elena', 'Moreno', 'elena.moreno@example.com', 29, 'C#'),
+('Daniel', 'Romero', 'daniel.romero@example.com', 33, 'HTML'),
+('Paula', 'Torres', 'paula.torres@example.com', 24, 'CSS'),
+('Alejandro', 'Ruiz', 'alejandro.ruiz@example.com', 28, 'R'),
+('Carmen', 'Vega', 'carmen.vega@example.com', 29, 'Kotlin'),
+('Adrian', 'Molina', 'adrian.molina@example.com', 34, 'Objective-C'),
+('Isabel', 'Gutierrez', 'isabel.gutierrez@example.com', 26, 'Scala'),
+('Hector', 'Ortega', 'hector.ortega@example.com', 30, 'Perl'),
+('Raquel', 'Serrano', 'raquel.serrano@example.com', 32, 'Shell'),
+('Alberto', 'Reyes', 'alberto.reyes@example.com', 28, 'VB.NET');
+
+SELECT * FROM usuarios_lenguajes.usuarios;
+*/
+
 -- Ejercicio 1: Seleccionar todos los usuarios y sus lenguajes asociados.
 SELECT nombre, lenguaje FROM usuarios_lenguajes.usuarios;
 
@@ -23,50 +51,40 @@ SELECT * FROM usuarios_lenguajes.usuarios WHERE lenguaje = 'Java' AND edad < 25;
 SELECT COUNT(DISTINCT edad) FROM usuarios_lenguajes.usuarios WHERE lenguaje = 'Java';
 
 -- Ejercicio 9: Seleccionar los usuarios que no saben ningún lenguaje.
-
+SELECT * FROM usuarios_lenguajes.usuarios WHERE lenguaje IS NULL;
 
 -- Ejercicio 10: Encontrar el nombre y edad del usuario más joven.
--- Tu respuesta aquí
-
+SELECT nombre, edad FROM usuarios_lenguajes.usuarios ORDER BY edad ASC LIMIT 1;
 
 -- Ejercicio 11: Seleccionar los usuarios y sus edades ordenados por edad de forma descendente.
--- Tu respuesta aquí
-
+SELECT nombre, edad FROM usuarios_lenguajes.usuarios ORDER BY edad DESC;
 
 -- Ejercicio 12: Contar cuántos usuarios tienen más de 28 años.
--- Tu respuesta aquí
-
+SELECT COUNT(*) AS usuarios_mayores_28 FROM usuarios_lenguajes.usuarios WHERE edad > 28;
 
 -- Ejercicio 13: Seleccionar los usuarios cuyo apellido contiene la letra 'a'.
--- Tu respuesta aquí
-
+SELECT * FROM usuarios_lenguajes WHERE apellido LIKE '%a%';
 
 -- Ejercicio 14: Encontrar el lenguaje más popular entre los usuarios menores de 30 años.
--- Tu respuesta aquí
-
+SELECT lenguaje, COUNT(*) AS popularidad FROM usuarios_lenguajes.usuarios WHERE edad < 30 GROUP BY lenguaje ORDER BY popularidad DESC LIMIT 1;
 
 -- Ejercicio 15: Seleccionar el usuario  mayor de 25 y que sepa el lenguaje 'TypeScript'.
--- Tu respuesta aquí
-
+SELECT * FROM usuarios_lenguajes.usuario WHERE edad > 25 AND lenguaje = 'TypeScript';
 
 -- Ejercicio 16: Contar cuántos usuarios tienen un lenguaje asociado llamado 'Python'.
--- Tu respuesta aquí
-
+SELECT COUNT(*) AS usuarios_python FROM usuarios_lenguajes.usuarios WHERE lenguaje = 'Python';
 
 -- Ejercicio 17: Seleccionar los usuarios y sus lenguajes asociados, si tienen alguno, ordenados por nombre de usuario.
--- Tu respuesta aquí
-
+SELECT nombre, lenguaje FROM usuarios_lenguajes.usuarios WHERE lenguaje IS NOT NULL ORDER BY nombre;
 
 -- Ejercicio 18: Encontrar los usuario con el email que contiene la palabra 'example'.
--- Tu respuesta aquí
-
+SELECT * FROM usuarios_lenguajes.usuarios WHERE email LIKE '%example%';
 
 -- Ejercicio 19: Seleccionar los usuarios que saben al menos un lenguaje y tienen una edad entre 25 y 35 años.
--- Tu respuesta aquí
-
+SELECT * FROM usuarios_lenguajes.usuarios WHERE lenguaje IS NOT NULL AND edad BETWEEN 25 AND 35;
 
 -- Ejercicio 20: Contar cuántos usuarios tienen un lenguaje asociado llamado 'CSS' y tienen menos de 30 años.
--- Tu respuesta aquí
+SELECT COUNT(*) AS usuarios_css_menores_30 FROM usuarios_lenguajes WHERE lenguaje = 'CSS' AND edad < 30;
 
 
 -- Ejercicio 21: Seleccionar los usuarios que tienen al menos un lenguaje asociado y mostrar la cantidad de lenguajes que tienen.
